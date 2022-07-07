@@ -2,3 +2,6 @@ site_name: Kitodo Production using OCR-D
 
 theme:
   name: material
+  palette:
+    primary: white
+    accent: blue
