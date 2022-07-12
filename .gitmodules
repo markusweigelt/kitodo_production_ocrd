@@ -4,7 +4,7 @@
 [submodule "_modules/kitodo-production-docker"]
 	path = _modules/kitodo-production-docker
 	url = https://github.com/markusweigelt/kitodo-production-docker
-	branch = main
+	branch = mkdocs
 [submodule "_modules/ocrd_controller"]
 	path = _modules/ocrd_controller
 	url = https://github.com/bertsky/ocrd_controller.git

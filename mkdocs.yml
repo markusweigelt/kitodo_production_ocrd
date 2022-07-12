@@ -4,6 +4,9 @@ nav:
   - Intro: 'index.md'
   - Services: '*include ./_modules/*/mkdocs.yml'
 
+plugins:
+  - monorepo
+
 theme:
   name: material
   features:
