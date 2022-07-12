@@ -1,5 +1,9 @@
 site_name: Kitodo Production using OCR-D
 
+nav:
+  - Intro: 'index.md'
+  - Services: '*include ./modules/*/mkdocs.yml'
+
 theme:
   name: material
   features:
