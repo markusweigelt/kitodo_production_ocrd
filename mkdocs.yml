@@ -2,10 +2,13 @@ site_name: Kitodo Production using OCR-D
 
 nav:
   - Intro: 'index.md'
-  - Installation: 
-    - 'installation/'
-  - Usage: 'usage'
-    - 'usage/'
+  - Installation:
+    - 'Prerequisites': 'installation/prerequisites.md'
+    - 'Preparation': 'installation/preparation.md'
+    - 'Configuration': 'installation/configuration.md'
+  - Usage:
+    - 'Kitodo.Production': 'usage/kitodo-production.md'
+    - 'OCR-D Monitor': 'usage/ocrd-monitor.md'    
   - Services: '*include ./_modules/*/mkdocs.yml'
 
 plugins:
