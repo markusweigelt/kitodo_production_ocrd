@@ -2,6 +2,10 @@ site_name: Kitodo Production using OCR-D
 
 nav:
   - Intro: 'index.md'
+  - Installation: 
+    - 'installation/'
+  - Usage: 'usage'
+    - 'usage/'
   - Services: '*include ./_modules/*/mkdocs.yml'
 
 plugins:
