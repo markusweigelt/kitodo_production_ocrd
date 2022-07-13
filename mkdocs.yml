@@ -10,7 +10,7 @@ nav:
     - Configuration: 
         - Overview: 'setup/configuration.md'
         - 'Environment Variables of Docker Compose': 'setup/configuration/environment-variables.md'
-        - 'Makefile Variables': 'setup/configuration/makefile.md'
+        - 'Makefile Variables': 'setup/configuration/makefile-variables.md'
     - Preparation: 'setup/preparation.md'
   - Usage:
       - Handling of Docker Compose: 'usage/handling.md'
