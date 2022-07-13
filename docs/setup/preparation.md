@@ -2,7 +2,7 @@
 
 Go to the directory where you've checked out the project.
 
-## Prepare keys and examples
+## Prepare data structure
 
 Before Docker Compose can be used, you must create directories to mount SSH key pairs
 for user authentication to [OCR-D Controller](https://github.com/bertsky/ocrd_controller)
@@ -39,9 +39,9 @@ Alternatively, perform the following steps manually:
 
 - Unzip `./_resources/data.zip` to `./_resources/data` to provide the examples and Kitodo.Production configuration files.
 
-- Follow the instructions in [the next section](#ocr-d-models) to install OCR models on the Controller.
+- Follow the instructions in [the next section](#install-models-on-the-ocr-d-controller) to install OCR models on the OCR-D Controller.
 
-## OCR-D models
+## Install models on the OCR-D Controller
 
 For practical workflows, you first have to install models for various processors on the OCR-D Controller.
 Since all processor resources are mounted under the `CONTROLLER_MODELS` volume, resources will persist
@@ -64,7 +64,7 @@ or dynamically:
         ocrd resmgr list-available
         ocrd resmgr --help
 
-#### Building
+## Building Docker images
 
 Unless you want to run with prebuilt images from Dockerhub
 (in which case make sure you have [configured](#configuration)

@@ -20,6 +20,7 @@ nav:
 
 plugins:
   - monorepo
+  - include-markdown
 
 theme:
   name: material
