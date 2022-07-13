@@ -1,0 +1,82 @@
+services:
+ 
+    kitodo-builder:
+        build: 
+          context: ${APP_BUILD_CONTEXT}
+          dockerfile: ./Dockerfile-Builder
+
+        environment:
+            - BUILDER_TYPE=${BUILDER_TYPE}
+            - BUILDER_RELEASE_VERSION=${BUILDER_RELEASE_VERSION}
+            - BUILDER_RELEASE_WAR_NAME=${BUILDER_RELEASE_WAR_NAME}
+            - BUILDER_RELEASE_SQL_NAME=${BUILDER_RELEASE_SQL_NAME}
+            - BUILDER_RELEASE_CONFIG_MODULES_NAME=${BUILDER_RELEASE_CONFIG_MODULES_NAME}
+            - BUILDER_GIT_COMMIT=${BUILDER_GIT_COMMIT}
+            - BUILDER_GIT_SOURCE_URL=${BUILDER_GIT_SOURCE_URL}
+            - DB_HOST=kitodo-db
+            - DB_PORT=${DB_PORT}
+            - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+            - DB_NAME=${DB_NAME}
+            - DB_USER=${DB_USER}
+            - DB_USER_PASSWORD=${DB_USER_PASSWORD}
+        
+
+    kitodo-app:
+        image: ${APP_IMAGE}
+    
+        build:
+          context: ${APP_BUILD_CONTEXT}
+          args:
+              BUILD_RESOURCES: ${APP_BUILD_RESOURCES}
+              # VCS_REF: ...
+              # BUILD_DATE: ...
+
+        ports:
+            - ${APP_PORT}:8080
+
+        environment:
+            - KITODO_DB_HOST=${DB_HOST}
+            - KITODO_ES_HOST=${ES_HOST}
+            - KITODO_MQ_HOST=${MQ_HOST}
+
+
+    kitodo-db:
+        image: ${DB_IMAGE}
+
+        hostname: ${DB_HOST}
+
+        environment:
+          MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+          MYSQL_DATABASE: ${DB_NAME}
+          MYSQL_USER: ${DB_USER}
+          MYSQL_PASSWORD: ${DB_USER_PASSWORD}
+
+        ports:
+          - ${DB_PORT}:3306
+
+
+    kitodo-es:
+        image: ${ES_IMAGE}
+        
+        hostname: ${ES_HOST}
+        
+        environment:
+            - bootstrap.memory_lock=true
+            - discovery.type=single-node
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+            - cluster.name=kitodo
+            - node.name=kitodo-1
+            - xpack.security.enabled=false
+
+        ports:
+            - ${ES_REST_PORT}:9200
+            - ${ES_NODE_PORT}:9300    
+
+
+    kitodo-mq:
+        image: ${MQ_IMAGE}
+
+        hostname: ${MQ_HOST}
+
+        ports:
+            - ${MQ_PORT}:61616

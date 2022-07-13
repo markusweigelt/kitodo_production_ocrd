@@ -1,0 +1,37 @@
+services:
+ 
+    kitodo-app:
+        extends:
+            file: kitodo-services.yml
+            service: kitodo-app
+            
+        depends_on:
+            - kitodo-db
+            - kitodo-es
+            - kitodo-mq
+            
+        volumes:
+            - ${APP_DATA}:/usr/local/kitodo
+    
+    
+    kitodo-db:
+        extends:
+            file: kitodo-services.yml
+            service: kitodo-db
+    
+    
+    kitodo-es:
+        extends:
+            file: kitodo-services.yml
+            service: kitodo-es
+    
+    
+    kitodo-mq:
+        extends:
+            file: kitodo-services.yml
+            service: kitodo-mq
+            
+        volumes:   
+            - type: bind
+              source: ./kitodo-activemq.xml
+              target: /opt/activemq/conf/activemq.xml

@@ -1,0 +1,6 @@
+site_name: OCR-D Controller
+
+docs_dir: .
+
+nav:
+  - README: 'README.md'

@@ -1,0 +1,40 @@
+FROM maven:3.8.5-openjdk-11
+
+RUN apt-get update && \
+	apt-get install -y \
+	zip \
+	unzip \
+	mariadb-client \
+	wget
+
+# type RELEASE or GIT
+ENV BUILDER_TYPE=RELEASE
+
+# env and defaults for RELEASE type
+ENV BUILDER_RELEASE_VERSION=3.4.3
+ENV BUILDER_RELEASE_WAR_NAME=kitodo-3.4.3
+ENV BUILDER_RELEASE_SQL_NAME=kitodo_3-4-3
+ENV BUILDER_RELEASE_CONFIG_MODULES_NAME=kitodo_3-4-3_config_modules
+
+# env and defaults for GIT type
+ENV BUILDER_GIT_COMMIT=master
+ENV BUILDER_GIT_SOURCE_URL=https://github.com/kitodo/kitodo-production/
+
+ENV DB_HOST=localhost
+ENV DB_PORT=3306
+ENV DB_ROOT_PASSWORD=1234
+ENV DB_NAME=kitodo
+ENV DB_USER=kitodo
+ENV DB_USER_PASSWORD=kitodo
+
+ENV JAVA_OPTS="-Djava.awt.headless=true -XX:+UseConcMarkSweepGC -Xmx4G -XX:MaxPermSize=256m"
+
+WORKDIR /build
+
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /tmp/wait-for-it.sh
+
+COPY build.sh /build.sh
+RUN chmod +x /build.sh && \
+	chmod +x /tmp/wait-for-it.sh
+	
+CMD /build.sh

@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+
+  ocrd-controller:
+    build:
+      context: .
+      # args:
+      #   VCS_REF: ...
+      #   BUILD_DATE: ...
+
+    image: ${CONTROLLER_IMAGE}
+
+    hostname: ${CONTROLLER_HOST}
+
+    environment:
+      - UID=${CONTROLLER_ENV_UID}
+      - GID=${CONTROLLER_ENV_GID}
+      - UMASK=${CONTROLLER_ENV_UMASK}
+      - WORKERS=${CONTROLLER_WORKERS}
+
+    expose:
+      - "22"
+
+    volumes:
+      - type: bind
+        source: ${CONTROLLER_KEYS} # ocrd manager public key
+        target: /authorized_keys
+      - ${CONTROLLER_MODELS}:/models # Resource directory
+      - ${CONTROLLER_CONFIG}:/config
+      - ${CONTROLLER_DATA}:/data
+
+    deploy:
+      resources:
+        limits:
+          cpus: ${CONTROLLER_WORKERS}
+        reservations:
+          devices:
+            - capabilities: [gpu]
+            # we want to reserve _up to_ 1 device
+            # (not more, because 1 can typically be shared across workers already,
+            #  and for physical multi-GPU, we should instead use swarm anyway)
+            # but the semantics of "count" is _at least_ unfortunately
+            # (which would fail on CPU-only systems), so just leave unspecified
+            #  count: 1

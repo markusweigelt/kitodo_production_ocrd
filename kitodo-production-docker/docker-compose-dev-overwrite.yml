@@ -1,0 +1,13 @@
+services:
+ 
+    kitodo-app:
+        volumes:
+            - type: bind
+              source: ${APP_WAR}
+              target: /tmp/kitodo/kitodo.war
+
+        environment:
+            - JPDA=true
+        
+        ports:
+            - 5005:5005

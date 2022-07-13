@@ -1,0 +1,41 @@
+services:
+
+  ocrd-manager:
+    build:
+      context: .
+      # args:
+      #   VCS_REF: ...
+      #   BUILD_DATE: ...
+
+    image: ${MANAGER_IMAGE}
+
+    hostname: ${MANAGER_HOST}
+
+    environment:
+      - UID=${MANAGER_ENV_UID}
+      - GID=${MANAGER_ENV_GID}
+      - UMASK=${MANAGER_ENV_UMASK}
+      - "CONTROLLER=${CONTROLLER_HOST}:${CONTROLLER_PORT_SSH}"
+      - "ACTIVEMQ=${MQ_HOST}:${MQ_PORT}"
+
+    expose:
+      - "22"
+
+    # must have been started independently:
+    # depends_on:
+    #   - ocrd-controller
+
+    volumes:
+      - type: bind
+        source: ${MANAGER_KEYS} # Kitodo public key (for access to Manager)
+        target: /authorized_keys
+      - type: bind
+        source: ${MANAGER_KEY} # Manager private key (for access to Controller)
+        target: /id_rsa
+      - ${MANAGER_DATA}:/data # metadata directory
+      - shared:/run/lock/ocrd.jobs
+
+    tty: true # docker run -t
+
+volumes:
+  shared:
