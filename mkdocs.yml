@@ -20,6 +20,7 @@ nav:
 
 plugins:
   - monorepo
+  - search
   - macros
 
 theme:
