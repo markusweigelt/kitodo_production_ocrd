@@ -8,9 +8,7 @@ The following variables must be defined.
 
 (only relevant in **managed mode**, see [above](#setup))
 
-{%
-   include-markdown 'docs/_generated/env-controller-table.md'
-%}
+{% include '_generated/env-controller-table.md' %}
 
 | Name | Default | Description
 | --- | --- | --- |

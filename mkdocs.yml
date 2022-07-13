@@ -20,7 +20,7 @@ nav:
 
 plugins:
   - monorepo
-  - include-markdown
+  - macros
 
 theme:
   name: material
