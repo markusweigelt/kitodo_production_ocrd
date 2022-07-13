@@ -18,5 +18,6 @@ jobs:
         run: ./.github/scripts/build-env-mds.sh
         shell: bash
       - run: pip install mkdocs-material
+      - run: pip install mkdocs-monorepo-plugin
       - run: mkdocs build --theme material
       - run: mkdocs gh-deploy --force
