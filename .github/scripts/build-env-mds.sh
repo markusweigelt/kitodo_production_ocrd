@@ -1,6 +1,7 @@
 #!/bin/bash
 LASTPREFIX=""
 TARGETDIR="./docs/_generated/"
+mkdir -p $TARGETDIR
 grep -v '^\s*$\|^\s*\#' .env | while read -r line; do
 	PREFIX=${line%%_*}
 	if [ "$PREFIX" == "COMPOSE" ]; then
