@@ -1,15 +1,19 @@
-site_name: Kitodo Production using OCR-D
+site_name: Kitodo.Production using OCR-D
 
 nav:
-  - Intro: 'index.md'
-  - Installation:
-    - 'Prerequisites': 'installation/prerequisites.md'
-    - 'Preparation': 'installation/preparation.md'
-    - 'Configuration': 'installation/configuration.md'
-  - Usage:
-    - 'Kitodo.Production': 'usage/kitodo-production.md'
-    - 'OCR-D Monitor': 'usage/ocrd-monitor.md'    
-  - Services: '*include ./_modules/*/mkdocs.yml'
+  - Home: 'index.md'
+  - Getting Started: 'getting-started.md'
+  - Setup:
+    - Prerequisites: 'setup/prerequisites.md'
+    - Configuration: 'setup/configuration.md'
+        - Environment Variables of Docker Compose: 'setup/configuration/environment-variables.md'
+        - Makefile Variables: 'setup/configuration/makefile.md'
+    - Preparation: 'setup/preparation.md'
+  - Usage: 'usage/handling.md'
+      - Services:
+        - Kitodo.Production: 'usage/services/kitodo-production.md'
+        - OCR-D Monitor: 'usage/services/ocrd-monitor.md'
+  - Modules: '*include ./_modules/*/mkdocs.yml'
 
 plugins:
   - monorepo

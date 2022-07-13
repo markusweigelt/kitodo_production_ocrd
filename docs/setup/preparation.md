@@ -1,4 +1,4 @@
-#Preparation
+# Preparation
 
 Go to the directory where you've checked out the project.
 
@@ -25,9 +25,7 @@ The fastest way to get all that is by using the Makefile via the following comma
 
 Alternatively, perform the following steps manually:
 
-
 - Create directories to host SSH key pair files:
-
 
         mkdir ./kitodo/.ssh/
         mkdir ./ocrd/manager/.ssh/
@@ -39,12 +37,9 @@ Alternatively, perform the following steps manually:
         mv ./kitodo/.ssh/id_rsa.pub ./ocrd/manager/authorized_keys
         mv ./ocrd/manager/id_rsa.pub ./ocrd/controller/authorized_keys
 
-
 - Unzip `./_resources/data.zip` to `./_resources/data` to provide the examples and Kitodo.Production configuration files.
 
-
 - Follow the instructions in [the next section](#ocr-d-models) to install OCR models on the Controller.
-
 
 ## OCR-D models
 
@@ -68,3 +63,23 @@ or dynamically:
         ocrd resmgr list-installed
         ocrd resmgr list-available
         ocrd resmgr --help
+
+#### Building
+
+Unless you want to run with prebuilt images from Dockerhub
+(in which case make sure you have [configured](#configuration)
+the right version tags in your `.env`), you first need to
+build Docker images for all modules.
+
+For the [Kitodo.Production application](https://github.com/markusweigelt/kitodo-production-docker/tree/main/kitodo),
+prior to building the app container itself, one needs to compile the app from source
+(the result of which will be provided in the submodule `kitodo-production-docker` under folder `build-resources`).
+From there, all runtime module images can be built:
+
+    make build
+
+(or equivalently:)
+
+    docker-compose -f ./docker-compose.kitodo-builder.yml up --abort-on-container-exit --build
+    docker-compose -f ./docker-compose.kitodo-builder.yml down
+    docker-compose build
