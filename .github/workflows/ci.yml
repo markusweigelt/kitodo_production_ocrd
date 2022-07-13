@@ -20,5 +20,6 @@ jobs:
       - run: pip install mkdocs-material
       - run: pip install mkdocs-monorepo-plugin
       - run: pip install mkdocs-macros-plugin
+      - run: pip install mkdocs-exclude-search
       - run: mkdocs build --theme material
       - run: mkdocs gh-deploy --force

@@ -21,6 +21,9 @@ nav:
 plugins:
   - monorepo
   - search
+  - exclude-search:
+        exclude:
+            - _generated/*
   - macros
 
 theme:
