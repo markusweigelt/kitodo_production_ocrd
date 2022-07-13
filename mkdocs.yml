@@ -1,18 +1,21 @@
 site_name: Kitodo.Production using OCR-D
 
+repo_url: https://github.com/markusweigelt/kitodo_production_ocrd
+
 nav:
   - Home: 'index.md'
   - 'Getting Started': 'getting-started.md'
   - Setup:
     - Prerequisites: 'setup/prerequisites.md'
-    - Configuration: 'setup/configuration.md'
+    - Configuration: 
+        - Overview: 'setup/configuration.md'
         - 'Environment Variables of Docker Compose': 'setup/configuration/environment-variables.md'
         - 'Makefile Variables': 'setup/configuration/makefile.md'
     - Preparation: 'setup/preparation.md'
-  - Usage: 'usage/handling.md'
-      - Services:
-        - Kitodo.Production: 'usage/services/kitodo-production.md'
-        - OCR-D Monitor: 'usage/services/ocrd-monitor.md'
+  - Usage:
+      - Handling of Docker Compose: 'usage/handling.md'
+      - Kitodo.Production: 'usage/kitodo-production.md'
+      - OCR-D Monitor: 'usage/ocrd-monitor.md'
   - Modules: '*include ./_modules/*/mkdocs.yml'
 
 plugins:
@@ -24,7 +27,8 @@ theme:
     - navigation.tabs
     - navigation.top
     - navigation.tracking
+    - navigation.expand
     - toc.follow
   palette:
-    primary: white
-    accent: blue
+    primary: blue grey
+    accent: light blue

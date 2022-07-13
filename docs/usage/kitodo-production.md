@@ -1,4 +1,4 @@
-# Kitodo
+# Kitodo.Production
 
 Open your browser and navigate to http://localhost:8080/kitodo after OCR-D and Kitodo are started.
 
